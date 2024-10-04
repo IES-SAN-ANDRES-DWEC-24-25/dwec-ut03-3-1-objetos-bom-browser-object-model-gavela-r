@@ -1,4 +1,4 @@
-// Author:  Carlos Tessier
+// Author:  Adrian Gavela Rodriguez
 // Version: 1.0
 // Date:    2024/10/01
 
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const url = document.getElementById("inputUrl");
   const btnBack = document.getElementById("btnBack");
   const btnForward = document.getElementById("btnForward");
-  const redirection = document.getElementById("redirection");
+  const btnRedirection = document.getElementById("redirection");
 
   // Añadir eventos click a los botones
 
@@ -29,19 +29,31 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Redirecciona a la URL introducida en el input a la nueva ventana mywindow
+  
   btnUrl.addEventListener("click", function () {
     // si la URL no está vacía, redireccionar a www.educa.jcyl.es"
+    if(url.value === ""){
+      myWindow = window.open('https://www.educa.jcyl.es');
+    }else{
+      myWindow = window.open(url.value);
+    }
   });
-
+  
   // Cierra la ventana emergente mywindow
-  btnClose.addEventListener("click", function () {});
-
+  btnClose.addEventListener("click", function () {
+    myWindow.close();
+  });
+  
   // Retroceder en la historia del navegador
-  btnBack.addEventListener("click", function () {});
-
+  btnBack.addEventListener("click", function () {
+    window.history.back();
+  });
+    
   // Avanzar en la historia del navegador
-  btnForward.addEventListener("click", function () {});
-
+  btnForward.addEventListener("click", function () {
+    window.history.forward();
+  });
+    
   // Temoporizador
   btnStartTimer.addEventListener("click", function () {
     // Iniciar el temporizador timer cada segundo para poner en counter el valor de segundos transcurridos
@@ -83,7 +95,16 @@ window.addEventListener('COMPLETAR', () => {
   */
 
 // mostrar la información del navegador en una ventana emergente
-function informacionNavegador() {}
+function informacionNavegador() {
+  let navegador = `
+    Nombre del navegador = ${window.navigator.appName}
+    Version del navegador = ${window.navigator.appVersion}    
+    Sistema Operativo = ${window.navigator.platform}
+    Idioma del navegador = ${window.navigator.languages[0]}
+  `
+  alert(navegador);
+}
+  
 
 // Función para redireccionar a una URL en una ventana nueva
 function redirect(url) {}
